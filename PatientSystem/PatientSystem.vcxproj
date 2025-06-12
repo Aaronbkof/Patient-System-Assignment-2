@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractPatientDatabaseLoader.h" />
     <ClInclude Include="GPNotificationSystemFacade.h" />
+    <ClInclude Include="PatientFileAdaption.h" />
     <ClInclude Include="HospitalAlertSystemFacade.h" />
     <ClInclude Include="PatientAlertLevels.h" />
     <ClInclude Include="Patient.h" />
