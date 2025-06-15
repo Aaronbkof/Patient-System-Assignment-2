@@ -6,7 +6,6 @@
 #include "PatientDatabaseLoader.h"
 #include "Vitals.h"
 #include "PatientFileAdaption.h"
-#include "CompositePatientDatabaseLoader.h"
 #include "PatientManagementSystem.h"
 
 #include "GPNotificationSystemFacade.h"
