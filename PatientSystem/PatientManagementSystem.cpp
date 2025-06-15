@@ -1,5 +1,3 @@
-#include "PatientManagementSystem.h"
-
 #include <iostream>
 #include <map>
 #include <tuple>
@@ -8,9 +6,12 @@
 #include "PatientDatabaseLoader.h"
 #include "Vitals.h"
 #include "PatientFileAdaption.h"
+#include "CompositePatientDatabaseLoader.h"
+#include "PatientManagementSystem.h"
 
 #include "GPNotificationSystemFacade.h"
 #include "HospitalAlertSystemFacade.h"
+#include "DualPatientLoader.h"
 
 using namespace std;
 
@@ -21,6 +22,20 @@ PatientManagementSystem::PatientManagementSystem() :
 	_hospitalAlertSystem(std::make_unique<HospitalAlertSystemFacade>()),
 	_gpNotificationSystem(std::make_unique<GPNotificationSystemFacade>())
 {
+	// firstly create the dual-source loader
+	auto dualLoader = std::make_unique<DualPatientLoader>();
+	// then create and add the database loader before the file as per spec
+	//std::cout << "Setting up database loader..." << std::endl;
+	auto databaseLoader = std::make_unique<PatientDatabaseLoader>();
+	dualLoader->addPatientLoader(std::move(databaseLoader));
+
+	// then create and add the file loader after as per spec
+	//std::cout << "Setting up file loader..." << std::endl;
+	auto fileLoader = std::make_unique<PatientFileAdapter>("patients.txt");
+	dualLoader->addPatientLoader(std::move(fileLoader));
+
+	// the system will not load both source of data showing ALL patients
+	_patientDatabaseLoader = std::move(dualLoader);
 	_patientDatabaseLoader->initialiseConnection();
 }
 
