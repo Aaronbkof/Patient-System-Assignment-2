@@ -42,7 +42,7 @@
     <ClCompile Include="GPNotificationSystemFacade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompositePatientDBLoader.cpp">
+    <ClCompile Include="DualPatientLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +80,7 @@
     <ClInclude Include="PatientFileAdaption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompositePatientLoader.h">
+    <ClInclude Include="DualPatientLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
